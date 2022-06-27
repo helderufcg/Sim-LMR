@@ -7,7 +7,7 @@
   * Python language;
   * Supports N layers;
   * Kretschmann-Raether configuration;
-  * Angular Interrogation Mode (AIM);
+  * Angular Interrogation Mode;
 
 ## Flowchart:
 
