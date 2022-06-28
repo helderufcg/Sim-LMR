@@ -16,12 +16,12 @@ flowchart TD;
 
     start([Start])-->input1[/Select Kretschmann configuration/];
     input1[/Select Kretschmann configuration/]-->input2[/Select Angular Interrogation Mode/];
-    input2-->input3[/"#149; Type of material: <p>#149; Layer thickness: <p>#149; Refractive Index:"/];
-    input3-->input4{"Insert new layer?"};
-    input4-->|Yes|input3[/"#149; Type of material: <p>#149; Layer thickness: <p>#149; Refractive Index:"/];
-    input4-->|No|connection((A))
-    connection2((A))-->input5[/"#149;Indicate the analyte layer<p>#149;Indicate the increment of the refractive<p>  index of the analyte (#Delta;ns)"/];
-    input5-->input6[/"#149; Angular range (0#deg; - 90#deg;): <p>#149; Incident wavelength(#lambda;i): <p>#149; Shift angle(#Delta;#theta;):"/];
+    input2-->input3[/"#149; Angular range (0#deg; - 90#deg;): <p>#149; Incident wavelength(#lambda;i): <p>#149; Shift angle(#Delta;#theta;):"/];
+    input3-->input4[/"#149; Type of material: <p>#149; Layer thickness: <p>#149; Refractive Index:"/];
+    input4-->input5
+    input5-->|No|connect((A))
+    input5{"Insert new layer?"}-->|Yes|input4[/"#149; Type of material: <p>#149; Layer thickness: <p>#149; Refractive Index:"/];
+    connect2((A))-->input6[/"#149;Indicate the analyte layer<p>#149;Indicate the increment of the refractive<p>  index of the analyte (#Delta;ns)"/];
     input6-->input7["Calculation:<p> #149; Reflectance<p> #149; Sensibility<p> #149; Full Width at Half Maximum (FWHM)<p> #149; Quality Factor (QF)<p>"];
     input7-->display{{"Graphic and numerical results"}};
     display-->theend([End]);
