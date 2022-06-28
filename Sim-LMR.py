@@ -395,9 +395,9 @@ class LMR(object):
         elif material == 19:  # Cytop
             # According to the AGC chemicals company. Available in:
             # https://www.agc-chemicals.com/jp/en/fluorine/products/cytop/download/index.html
-            X = [0.238, 0.245, 0.275, 0.313, 0.365, 0.407, 0.436, 0.546, 0.589, 0.633, 1.3, 1.55]
+            X = [0.2, 2]
 
-            n_cy = [1.35764, 1.35637, 1.35393, 1.35132, 1.34840, 1.34566, 1.34404, 1.3402, 1.34, 1.3395, 1.3348, 1.3335]
+            n_cy = [1.34, 1.34]
 
             # Method that calculates the refractive indices of the metals by linear interpolation
             # using the points contained in X, n e k_index previously described
