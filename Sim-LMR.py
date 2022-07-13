@@ -35,16 +35,16 @@ class LMR(object):
         self.inter = 0  # Number of interactions for sensitivity analyses
         self.step_shift = 0  # Variation of the refractive index of the analyte for sensitivity analyses
 
-        # Method that selects sensor configuration: Kretschmann ou Optical Fiber.
+        # Method that selects sensor coupling: prism or Optical Fiber.
         while True:
             try:
                 self.config = int(
-                    input("Select a configuration:\n1 - Kretschmann\n2 - Optical Fiber\n-> "))
+                    input("Select a coupling:\n1 - Prism\n2 - Optical Fiber\n-> "))
                 if self.config < 1 or self.config > 2:
                     print("Invalid option selected")
                 else:
                     if self.config == 1:
-                        print("\nKretschmann configuration\n")
+                        print("\nPrism coupling\n")
                     else:
                         print("\nConfiguration using Optical Fiber\n")
                     break
@@ -53,7 +53,7 @@ class LMR(object):
 
         # Kretschmann configuration
         if self.config == 1:
-            # Method that selects a interrogation mode: Angular ou Wavelength.
+            # Method that selects a interrogation mode: Angular or Wavelength.
             while True:
                 try:
                     self.mod_int = int(
