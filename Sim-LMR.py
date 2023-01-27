@@ -13,8 +13,6 @@ class LMR(object):
         self.nLayers = 0  # Number of layers
         self.material = []  # List with the materials of each layer
         self.indexRef = []  # List with refractive index of each layer
-        self.R_TM_i = []  # TM polarization reflectance
-        self.R_TE_i = []  # TE polarization reflectance
 
         self.R_TM = []  # List with reflectance values for plotting multiple curves in TM polarization
         self.R_TE = []  # List with reflectance values for plotting multiple curves in TE polarization
@@ -518,7 +516,7 @@ class LMR(object):
         # Method that displays results
         self.display_results(s, delta_X_TM, delta_X_TE)
 
-    def Reflectance(self, index, theta_i, wavelenght, mode):
+    def Reflectance(self, index, theta_i, wavelenght):
         """ The numerical model is based on the attenuated total reflection method combined with the transfer matrix
             method for a multilayer system according to:
             * PALIWAL, N.; JOHN, J. Lossy mode resonance based fiber optic sensors. In: Fiber Optic Sensors.
@@ -566,27 +564,25 @@ class LMR(object):
         r_TM = num_TM / den_TM  # 'r_TM'-> Fresnel reflection coefficient - TM polarization
         r_TE = num_TE / den_TE  # 'r_TE'-> Fresnel reflection coefficient - TE polarization
 
-        if mode == 0:
-            return abs(r_TM) ** 2  # Reflectance - TM polarization
-        elif mode == 1:
-            return abs(r_TE) ** 2  # Reflectance - TE polarization
+        
+        return abs(r_TM) ** 2, abs(r_TE) ** 2  # Reflectance - TM polarization, Reflectance - TE polarization
+        
+
 
     def ReflectanceAux(self, mod_int):
         # Auxiliary method to calculate reflectance curves at each polarization
         # If mod_int (interrogation mode) == 1 -> Reflectance as a function of incidence angle
 
-        self.R_TM_i = []
-        self.R_TE_i = []
+        R_TM_i = []
+        R_TE_i = []
 
         if mod_int == 1:
             for t in range(len(self.theta_i)):
-                for mod_p in range(3):
-                    if mod_p == 0:
-                        self.R_TM_i.append(self.Reflectance(self.indexRef, self.theta_i[t], self.wavelenght, mod_p))
-                    elif mod_p == 1:
-                        self.R_TE_i.append(self.Reflectance(self.indexRef, self.theta_i[t], self.wavelenght, mod_p))
+                r_tm, r_te = self.Reflectance(self.indexRef, self.theta_i[t], self.wavelenght)
+                R_TM_i.append(r_tm)
+                R_TE_i.append(r_te)
 
-            return self.R_TM_i, self.R_TE_i
+            return R_TM_i, R_TE_i
 
     def Point_LMR(self, reflectance, s):
         # The method self.Point_LMR() returns the resonance point of the curve
